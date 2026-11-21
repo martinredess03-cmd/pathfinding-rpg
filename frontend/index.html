@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El camino del héroe · Pathfinding RPG</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>El camino del héroe</h1>
+  <p class="sub">Búsqueda de rutas en el mapa de un videojuego. Los algoritmos se ejecutan en el <strong>backend (Python)</strong> y este frontend solo dibuja el resultado.</p>
+
+  <section class="card">
+    <div class="bar">
+      <label for="alg">Algoritmo</label>
+      <select id="alg">
+        <option value="astar">A* (heurística)</option>
+        <option value="greedy">Voraz primero el mejor (heurística)</option>
+        <option value="dijkstra">Costo uniforme / Dijkstra (ciega)</option>
+        <option value="bfs">Búsqueda en anchura BFS (ciega)</option>
+      </select>
+      <button id="bGo" class="primary">Buscar</button>
+      <button id="bNew">Nuevo mapa</button>
+      <label for="spd">Velocidad <input type="range" id="spd" min="1" max="60" value="10"></label>
+    </div>
+    <div class="bar" role="group" aria-label="Qué hace un clic en el mapa">
+      <span class="note">Clic en el mapa:</span>
+      <button id="mS" aria-pressed="true">Mover inicio</button>
+      <button id="mG" aria-pressed="false">Mover cofre</button>
+      <button id="mW" aria-pressed="false">Poner o quitar agua</button>
+    </div>
+    <canvas id="map" aria-label="Mapa del juego"></canvas>
+    <div class="legend">
+      <span><i style="background:var(--grass)"></i>Pasto (1)</span>
+      <span><i style="background:var(--forest)"></i>Bosque (3)</span>
+      <span><i style="background:var(--swamp)"></i>Pantano (6)</span>
+      <span><i style="background:var(--water)"></i>Agua (bloqueado)</span>
+      <span><i style="background:rgba(255,214,0,.7)"></i>Exploradas</span>
+      <span><i style="background:var(--accent)"></i>Ruta final</span>
+    </div>
+    <div class="stats">
+      <div><span>Nodos expandidos</span><strong id="sE">—</strong></div>
+      <div><span>Costo de la ruta</span><strong id="sC">—</strong></div>
+      <div><span>Pasos</span><strong id="sP">—</strong></div>
+      <div><span>Tiempo del servidor</span><strong id="sT">—</strong></div>
+    </div>
+    <p class="note" id="status"></p>
+  </section>
+
+  <section class="card">
+    <h2>Comparaciones</h2>
+    <div class="bar">
+      <button id="bCmp">Comparar los 4 en este mapa</button>
+      <button id="bExp">Experimento: 200 mapas aleatorios</button>
+    </div>
+    <div id="out"><p class="note">Elige una comparación para ver la tabla.</p></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
